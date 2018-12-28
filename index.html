@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Authentication using OpenID Connect</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>Authentication</h2>
+					<h2>using OpenID Connect</h2>
+					<small><code class="hljs">Created by <a href="https://github.com/bbboortz">Benni Boortz</a> for 35C3 Lighting Talks</code></small>
+				</section>
+
+				<section>
+					<h2>How does authentication nowadays?</h2>
+				</section>
+				<section>
+					<img data-src="./oidc-flow.png" alt="png">
+				</section>
+
+				<section>
+					<h2>What is OpenID Connect?</h2>
+				</section>
+
+				<section>
+					<small><code class="hljs">
+					"OpenID Connect is an interoperable authentication protocol based on the OAuth 2.0 family of specifications. It uses straightforward REST/JSON message flows with a design goal of “making simple things simple and complicated things possible”. It’s uniquely easy for developers to integrate, compared to any preceding Identity protocol.",
+					<a href="https://openid.net/connect/">https://openid.net/connect/</a>
+					</code></small>
+				</section>
+				<section>
+					<p>an authorization framework based on OAuth2 and JWT</p>
+				</section>
+				<section>
+					<p>it is using REST/JSON flows</p>
+				</section>
+				<section>
+					<p>is providing a secure way to identify users with signed tokens</p>
+				</section>
+				<section>
+					<p>abbreviated with OIDC</p>
+				</section>
+
+				<section>
+					<h2>How does it work?</h2>
+				</section>
+				<section>
+					<img data-src="./oidc-overview.png" alt="png">
+				</section>
+				<section>
+					<img data-src="./oidc-flow.png" alt="png">
+				</section>
+
+				<section>
+					<h2>How toes a token look like?</h2>
+				</section>
+				<section style="text-align: left; word-break: break-all;">
+					<p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</p>
+				</section>
+				<section style="text-align: left;">
+				    <p>{</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp; "iss": "https://idp.url",</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp; "azp": "yourclient.com",</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp; "aud": "yourclient.com",</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; "sub": "123456778",</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; "email": "benjamin.boortz@gmail.com",</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; "email_verified": true,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; ...</p>
+				    <p>}</p>
+				</section>
+				<section>
+					<img data-src="./oidc-flow.png" alt="png">
+				</section>
+
+				<section>
+					<h2>Which benefits does it bring?</h2>
+				</section>
+				<section>
+					<p>OIDC is mobile friendly</p>
+				</section>
+				<section>
+					<p>OIDC is simple to integrate into web applications</p>
+				</section>
+				<section>
+					<p>OIDC let application developer authenticate users without any knowledge of their credentials</p>
+				</section>
+				<section>
+					<p>OIDC is seperating authentication from authorization</p>
+				</section>
+				<section>
+					<p>OIDC is offering a userinfo service to let applications retrieve user/profile related information</p>
+				</section>
+				<section>
+					<p>OIDC is able to provide a consent to ensure users need to grant which application can access their user data</p>
+				</section>
+
+
+				<section>
+					<h2>How to use OIDC?</h2>
+				</section>
+
+				<section>
+					<h2>On Server Side try </h2>
+					<ul>
+						<li>https://www.keycloak.org</li>
+						<li>https://github.com/dexidp/dex</li>
+						<li>https://github.com/ory/hydra</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>On Client Side use libraries</h2>
+					<ul>
+						<li>https://github.com/coreos/go-oidc</li>
+						<li>https://github.com/rohe/pyoidc</li>
+						<li>https://github.com/jaredhanson/passport</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Or use OIDC capable reverse proxies</h2>
+					<ul>
+						<li>https://github.com/BTBurke/caddy-jwt</li>
+						<li>https://github.com/keycloak/keycloak-gatekeeper</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Try my OIDC test application</h2>
+					<ul>
+						<li>Try it online: <a href="https://go-oidc-testapp.appspot.com/">https://go-oidc-testapp.appspot.com</a></li>
+						<li>Checkout the source: <a href="https://github.com/bboortz/go-oidc-testapp">https://github.com/bboortz/go-oidc-testapp</a></li>
+					</ul>
+				</section>
+
+				<section style="text-align: left;">
+					<h2>Thanks</h2>
+					<ul>
+						<li>The slides online: <a href="https://goo.gl/oQh4hQ">https://goo.gl/oQh4hQ</a></li>
+						<li>The slides in git: <a href="https://github.com/bboortz/go-oidc-testapp/slides">https://github.com/bboortz/go-oidc-testapp/slides</a></li>
+					</ul>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
